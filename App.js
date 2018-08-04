@@ -7,23 +7,90 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  PixelRatio,
+  TextInput
+} from 'react-native';
 
+// 记录手机屏幕的宽高
+const {height, width} = Dimensions.get('window');
+const pixelRatio = PixelRatio.get();
 const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+  ios: () => console.log(`window.height= ${pixelRatio}`),
+  android:() => alert('this is android')
 });
+let widthOfMargin = width * 0.05;
+
 
 type Props = {};
+
 export default class App extends Component<Props> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      phoneNum: '',
+      password: '123'
+    };
+    this.updatePW = this.updatePW.bind(this);//
+  }
+  updateNum(newText) {
+    this.setState((state) => { // setState 的第二个函数是回调函数，组件渲染完成后执行
+      return {
+        phoneNum: newText
+      }
+    },this.changeNumDone)
+  }
+  changeNumDone(){
+    console.log('setState 的第二个函数是回调函数，组件渲染完成后执行')
+  }
+
+  updatePW(newText) {
+    this.setState(() => {
+      return {
+        password: newText
+      }
+    });
+  };
+  // shouldComponentUpdate(){ // 判断是否渲染 false 否 true 是
+  //   return this.state.phoneNum.length<6?false:true;
+  // };
+
+  componentDidMount(){ //组件插入后执行
+    instructions();
+  }
   render() {
+
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <Text style={styles.welcome}>
+          一逻辑像素等于{pixelRatio} 实际单位像素
+        </Text>
+        <TextInput
+          style={styles.textInputStyle}
+          placeholder={`请输入手机号`}
+          onChangeText={(date) => this.updateNum(date)}
+        />
+        <Text style={styles.textPromptStyle}>
+          您输入的手机号是：{this.state.phoneNum}
+        </Text>
+        <TextInput
+          style={styles.textInputStyle}
+          placeholder={'请输入密码'}
+          secureTextEntry={true}
+          onChangeText={this.updatePW}
+        />
+        <Text style={styles.textPromptStyle}>
+          您输入的密码是：{this.state.password}
+        </Text>
+        <Text style={styles.bigTextPrompt}>
+          确定
+        </Text>
+
       </View>
     );
   }
@@ -32,8 +99,8 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   welcome: {
@@ -46,4 +113,23 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  textInputStyle: {
+    margin: widthOfMargin,
+    backgroundColor: '#ddd',
+    fontSize: 20,
+    height: 45
+  },
+  textPromptStyle: {
+    margin: widthOfMargin,
+    fontSize: 20
+  },
+  bigTextPrompt: {
+    margin: widthOfMargin,
+    backgroundColor: 'gray',
+    color: 'white',
+    textAlign: 'center',
+    lineHeight: 50,
+    fontSize: 20,
+    height: 50
+  }
 });
