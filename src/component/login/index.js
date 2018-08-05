@@ -22,90 +22,22 @@ import WaitingLeaf from "./Waiting";
 
 type Props = {};
 
-export default class NaviModule extends Component<Props> {
-  // 静态变量&&静态函数
-  static mystatic1 = '静态变量读取方法 类名.变量名'
+export default class LearnRN extends Component<Props> {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentScene: 'Login',
-      phoneNumber: '',
-      password: ''
-    };
-    this.handleBackSignal = this.handleBackSignal.bind(this);
-    this.onLoginPressed = this.onLoginPressed.bind(this);
-  }
-  updateNum(newText) {
-    this.setState((state) => { // setState 的第二个参数是回调函数，组件渲染完成后执行
-      return {
-        phoneNum: newText
-      }
-    },this.changeNumDone)
-  }
-  changeNumDone(){
-    console.log('setState 的第二个函数是回调函数，组件渲染完成后执行')
-  }
-
-  updatePW(newText) {
-    this.setState(() => {
-      return {
-        password: newText
-      }
-    });
-  };
-  // shouldComponentUpdate(){ // 判断是否渲染 false 否 true 是
-  //   return this.state.phoneNum.length<6?false:true;
-  // };
-
-  onLoginPressed(aNumber, aPW) {
-    // alert(aNumber)
-    this.setState({
-      currentScene: 'Waiting',
-      phoneNumber: aNumber,
-      userPW: aPW
-    })
-  }
-
-  componentDidMount(){ //组件插入后执行
-    console.log('组件插入后执行')
-  }
   render() {
-      if (this.state.currentScene === 'Login'){
-        return <LoginLeaf onLoginPressed={this.onLoginPressed}/>
-      }else {
-        return (
-          <View>
-            <WaitingLeaf
-              phoneNumber={this.state.phoneNumber}
-              onGobackPressed={this.handleBackSignal}
-              userPW={this.state.password}
-            />
-          </View>
-        )
-      };
-  }
-
-  handleBackSignal() {
-    if (this.state.currentScene === 'Waiting') {
-      this.setState({
-        currentScene: 'Login'
-      })
-      return true;
-    }
-    return false;
-  }
-
-  componentDidMount() {
-    if (Platform.OS === 'android') {
-      BackHandler.addEventListener('hardwareBackPress', this.handleBackSignal)
-    }
-  }
-
-  componentWillUnmount() {
-    if (Platform.OS === 'android') {
-      BackHandler.removeEventListener('hardwareBackPress', this.handleBackSignal)
-    }
+    return (
+      <View style={styles.container}>
+        <View style={styles.firstRow}>
+          <View style={styles.test1}/>
+          <View style={styles.test2}/>
+          <View
+            style={styles.test3}
+            opacity={0.5}
+          />
+        </View>
+        <View style={styles.testPosition}/>
+      </View>
+    )
   }
 
 }
@@ -115,35 +47,44 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: 'center',
     // alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  firstRow: {
+    height: 40,
+    top: 40,
+    backgroundColor: 'black',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexWrap: 'wrap'
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  test1: {
+    width: 68,
+    height: 24,
+    backgroundColor: 'white',
+    // flex: 1
   },
-  textInputStyle: {
-    margin: 20,
-    backgroundColor: '#ddd',
-    fontSize: 20,
-    height: 45
+  test2: {
+    width: 40,
+    height: 24,
+    backgroundColor: 'red',
+    alignSelf: 'flex-start', //
   },
-  textPromptStyle: {
-    margin: 20,
-    fontSize: 20
+  test3: {
+    width: 100,
+    height: 24,
+    backgroundColor: '#188eee'
   },
-  bigTextPrompt: {
-    margin: 20,
-    backgroundColor: 'gray',
-    color: 'white',
-    textAlign: 'center',
-    lineHeight: 50,
-    fontSize: 20,
-    height: 50
+  testPosition: {
+    backgroundColor: 'grey',
+    height: 100,
+    width: 100,
+    position: 'absolute',
+    top: 150,
+    right: 50,
+    borderWidth: 2,
+    borderStyle: 'dotted',
+    opacity: .6,
+    borderRadius: 50
   }
 });

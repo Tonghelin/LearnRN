@@ -16,8 +16,7 @@ import {
   PixelRatio,
   TextInput
 } from 'react-native';
-import LoginLeaf from "./src/component/login/LoginLeaf";
-import NaviModule from "./src/component/login";
+import LearnRN from "./src/component/login";
 
 // 记录手机屏幕的宽高
 const {height, width} = Dimensions.get('window');
@@ -37,7 +36,7 @@ export default class App extends Component<Props> {
   }
   render() {
     return (
-      <NaviModule/>
+      <LearnRN/>
     );
   }
 }
