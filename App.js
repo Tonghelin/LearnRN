@@ -16,6 +16,8 @@ import {
   PixelRatio,
   TextInput
 } from 'react-native';
+import LoginLeaf from "./src/component/login/LoginLeaf";
+import NaviModule from "./src/component/login";
 
 // 记录手机屏幕的宽高
 const {height, width} = Dimensions.get('window');
@@ -26,120 +28,18 @@ const instructions = Platform.select({
 });
 let widthOfMargin = width * 0.05;
 
-
 type Props = {};
 
 export default class App extends Component<Props> {
-  // 静态变量&&静态函数
-  static mystatic1 = '静态变量读取方法 类名.变量名'
-
-  constructor(props) {
-    super(props);
-    this.name = 'hhh'
-    this.state = {
-      phoneNum: '',
-      password: '123'
-    };
-    this.updatePW = this.updatePW.bind(this);//
-  }
-  updateNum(newText) {
-    this.setState((state) => { // setState 的第二个参数是回调函数，组件渲染完成后执行
-      return {
-        phoneNum: newText
-      }
-    },this.changeNumDone)
-  }
-  changeNumDone(){
-    console.log('setState 的第二个函数是回调函数，组件渲染完成后执行')
-  }
-
-  updatePW(newText) {
-    this.setState(() => {
-      return {
-        password: newText
-      }
-    });
-  };
-  // shouldComponentUpdate(){ // 判断是否渲染 false 否 true 是
-  //   return this.state.phoneNum.length<6?false:true;
-  // };
 
   componentDidMount(){ //组件插入后执行
     instructions();
   }
   render() {
-
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          一逻辑像素等于{pixelRatio} 实际单位像素
-        </Text>
-        <TextInput
-          style={styles.textInputStyle}
-          placeholder={`请输入手机号`}
-          onChangeText={(date) => this.updateNum(date)}
-        />
-        <Text style={styles.textPromptStyle}>
-          您输入的手机号是：{this.state.phoneNum}
-        </Text>
-        <TextInput
-          style={styles.textInputStyle}
-          placeholder={'请输入密码'}
-          secureTextEntry={true}
-          onChangeText={this.updatePW}
-        />
-        <Text style={styles.textPromptStyle}>
-          您输入的密码是：{this.state.password}
-        </Text>
-        <Text style={styles.textPromptStyle}>
-          组件的成员变量name={this.name}
-        </Text>
-        <Text style={styles.textPromptStyle}>
-          静态变量{App.mystatic1}
-        </Text>
-        <Text style={styles.bigTextPrompt}>
-          确定
-        </Text>
-
-      </View>
+      <NaviModule/>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  textInputStyle: {
-    margin: widthOfMargin,
-    backgroundColor: '#ddd',
-    fontSize: 20,
-    height: 45
-  },
-  textPromptStyle: {
-    margin: widthOfMargin,
-    fontSize: 20
-  },
-  bigTextPrompt: {
-    margin: widthOfMargin,
-    backgroundColor: 'gray',
-    color: 'white',
-    textAlign: 'center',
-    lineHeight: 50,
-    fontSize: 20,
-    height: 50
-  }
-});
+const styles = StyleSheet.create({});
