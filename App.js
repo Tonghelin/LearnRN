@@ -30,8 +30,12 @@ let widthOfMargin = width * 0.05;
 type Props = {};
 
 export default class App extends Component<Props> {
+  // 静态变量&&静态函数
+  static mystatic1 = '静态变量读取方法 类名.变量名'
+
   constructor(props) {
     super(props);
+    this.name = 'hhh'
     this.state = {
       phoneNum: '',
       password: '123'
@@ -39,7 +43,7 @@ export default class App extends Component<Props> {
     this.updatePW = this.updatePW.bind(this);//
   }
   updateNum(newText) {
-    this.setState((state) => { // setState 的第二个函数是回调函数，组件渲染完成后执行
+    this.setState((state) => { // setState 的第二个参数是回调函数，组件渲染完成后执行
       return {
         phoneNum: newText
       }
@@ -86,6 +90,12 @@ export default class App extends Component<Props> {
         />
         <Text style={styles.textPromptStyle}>
           您输入的密码是：{this.state.password}
+        </Text>
+        <Text style={styles.textPromptStyle}>
+          组件的成员变量name={this.name}
+        </Text>
+        <Text style={styles.textPromptStyle}>
+          静态变量{App.mystatic1}
         </Text>
         <Text style={styles.bigTextPrompt}>
           确定
