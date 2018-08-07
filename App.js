@@ -16,7 +16,9 @@ import {
   PixelRatio,
   TextInput
 } from 'react-native';
-import LearnRN from "./src/component/login";
+// import LearnRN from "./src/component/login";  // flex布局 transform变换
+// import LearnRN from "./src/component/login/index2"; // 组件的onLayout 属性实践
+import LearnRN from "./src/component/login/image"; // Image组件
 
 // 记录手机屏幕的宽高
 const {height, width} = Dimensions.get('window');
