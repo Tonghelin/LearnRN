@@ -29,7 +29,9 @@ import {
 // import LearnRN from "./src/component/Text/StatusBar"; // 这是个状态栏组件
 // import LearnRN from "./src/component/Text/textInput_autoHeight"; // 这是个TextInput组件自增长
 // import LearnRN from "./src/component/Text/Clipboard"; // 这是个访问操作系统剪切面板
-import LearnRN from "./src/component/dataStorage/asyncStorage"; // 7.3 数据持久化操作
+// import LearnRN from "./src/component/dataStorage/asyncStorage"; // 7.3 数据持久化操作
+// import LearnRN from "./src/component/ScrollView/ScrollView"; // 8.1.6 ScrollView 组件基本用法
+import LearnRN from "./src/component/ListView/ListView"; // 8.3 ListView 组件基本用法--简单的列表
 
 
 
