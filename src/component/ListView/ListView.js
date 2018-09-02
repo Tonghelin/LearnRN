@@ -17,10 +17,49 @@ import MCV from '../../commonStyle/index';
 
 export default class LearnRN extends Component<Props> {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataSource: new ListView.DataSource(
+        {
+          rowHasChanged: (oldRow, newRow) => oldRow !== newRow
+        }
+      )
+    }
+  }
+
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     dataSource: [{
+  //       title: '123',
+  //       mood: '111',
+  //       time: '10:20'
+  //     },{
+  //       title: '123',
+  //       mood: '111',
+  //       time: '10:20'
+  //     }]
+  //   }
+  // }
+
+  componentWillMount() {
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows({
+        dataSource: {
+          title: '123',
+          mood: '111',
+          time: '10:20'
+        }
+      })
+    })
+  }
+
   renderItem(log, sectionID, rowID) {
+    console.log(log.time)
     return (
       <TouchableOpacity
-        onPress={() => this.props.selectListItem(rowID)}
+        // onPress={() => this.props.selectListItem(rowID)}
       >
         <View style={MCV.secondRow}>
           <Image
@@ -44,7 +83,10 @@ export default class LearnRN extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderItem.bind(this)}
+        />
       </View>
     );
   }
