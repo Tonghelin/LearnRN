@@ -19,8 +19,6 @@ import DataHandler from'./DataHandler';
 
 let { container, smallButton } = MCV;
 
-console.log('来自MCV的数据', container )
-
 export default class LearnRN extends Component<Props> {
   constructor(props) {
     super(props);
@@ -29,14 +27,17 @@ export default class LearnRN extends Component<Props> {
       diaryMood: null,
       diaryTime: '读取中...',
       diaryTitle: '读取中...',
-      diaryBody: '读取中...'
+      diaryBody: '读取中...',
+      diaryList: []
     };
 
     this.bindAllMyFunction();  // 执行回调函数绑定操作
     DataHandler.getAllTheDiary().then(
       (res) => {
-        this.setState(res);
-        console.log(this.state)
+        this.setState(res[0]);
+        this.setState({
+          diaryList: res
+        });
       }
     ).catch(
       (error) => {
@@ -82,7 +83,11 @@ export default class LearnRN extends Component<Props> {
     // alert(DataHandler.saveDairy)
     DataHandler.saveDiary(newDiaryMood, newDiaryBody, newDiaryTitle).then(
       (result) => {
-        this.setState(result);
+        // this.setState({
+        //   uiCode: 1,
+        //   diaryList: result
+        // });
+        this.setState( result )
       }
     ).catch(
       (error) => {
@@ -97,14 +102,19 @@ export default class LearnRN extends Component<Props> {
     });
   }
 
-  selectListItem() {
-    this.setState({
-      uiCode: 2
-    });
-  }
+  // selectListItem() {
+  //   this.setState({
+  //     uiCode: 2
+  //   });
+  // }
 
   searchKeyword(keyword) {
     console.log(`search keyword is : ${keyword}`);
+  }
+
+  selectListItem(aIndex) {
+    let rValue = DataHandler.getDiaryAtIndex( aIndex );
+    this.setState( rValue );
   }
 
   showDiaryList() {
@@ -114,6 +124,7 @@ export default class LearnRN extends Component<Props> {
         writeDiary={this.writeDiary}
         selectListItem={this.selectListItem}
         searchKeyword={this.searchKeyword}
+        diaryList={this.state.diaryList}
       />
     );
   }
