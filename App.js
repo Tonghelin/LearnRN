@@ -32,7 +32,11 @@ import {
 // import LearnRN from "./src/component/dataStorage/asyncStorage"; // 7.3 数据持久化操作
 // import LearnRN from "./src/component/ScrollView/ScrollView"; // 8.1.6 ScrollView 组件基本用法
 // import LearnRN from "./src/component/ListView/ListView"; // 8.3 ListView 组件基本用法--简单的列表
-import LearnRN from "./src/component/ListView/ListViewSection"; // 8.3 ListView 带分段标识的列表
+// import LearnRN from "./src/component/ListView/ListViewSection"; // 8.3 ListView 带分段标识的列表
+// import LearnRN from "./src/component/section9/ActivityIndicator"; // 第九章之等待提示示例
+// import LearnRN from "./src/component/section9/Timer"; // 第九章之定时器
+// import LearnRN from "./src/component/section9/Progress"; // 第九章之ios进度条
+import LearnRN from "./src/component/section9/Switch"; // 第九章之Switch开关组件
 
 
 
