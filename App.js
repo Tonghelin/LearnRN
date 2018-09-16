@@ -36,9 +36,13 @@ import {
 // import LearnRN from "./src/component/section9/ActivityIndicator"; // 第九章之等待提示示例
 // import LearnRN from "./src/component/section9/Timer"; // 第九章之定时器
 // import LearnRN from "./src/component/section9/Progress"; // 第九章之ios进度条
-import LearnRN from "./src/component/section9/Switch"; // 第九章之Switch开关组件
-
-
+// import LearnRN from "./src/component/section9/Switch"; // 第九章之Switch开关组件
+// import LearnRN from "./src/component/Navigator/StackNavigator"; // 第10章之 StackNavigator 栈式导航
+// import LearnRN from "./src/component/Navigator/TabNavigator"; // 第10章之 StackNavigator 标签导航
+// import LearnRN from "./src/component/Navigator/DrawerNavigator"; // 第10章之 DrawerNavigator 抽屉导航
+// import LearnRN from "./src/component/Navigator/CustomDrawer"; // 第10章之 DrawerNavigator 定制化contentComponent
+// import LearnRN from "./src/component/Modal/ModalExample"; // 第10.8.1章之 自定义Modal组件
+import LearnRN from "./src/component/Modal/UseModal"; // 第10.8.2章之 使用自定义Modal组件
 
 
 // 记录手机屏幕的宽高

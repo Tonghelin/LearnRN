@@ -13,8 +13,22 @@ import PropTypes from 'prop-types';
 
 
 export default class WaitingLeaf extends Component<Props> {
+  // 导航参数配置
+  static navigationOptions = {
+    title: '登录中'  // 设置导航标题
+  }
+
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    console.log('这是组件路径参数: ',this.props.navigation.state)
+  }
+
+  componentDidMount() {
+    // this.props.navigation.state.routeName = 'Home';
+    this.props.screenProps.setWaitingModal(false, '');
   }
 
   render() {
@@ -34,7 +48,8 @@ export default class WaitingLeaf extends Component<Props> {
   }
 
   onGobackPressed() {
-    this.props.onGobackPressed();
+    // this.props.onGobackPressed();
+    this.props.navigation.goBack();  // 返回操作
   }
 }
 

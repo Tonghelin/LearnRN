@@ -16,7 +16,9 @@ import {
   PixelRatio, // PixelRatio类提供了访问设备的像素密度的方法
   TextInput,
   BackHandler,
-  Alert
+  Alert,
+  ScrollView,
+  TouchableOpacity
 } from 'react-native';
 
 // 记录手机屏幕的宽高
@@ -32,6 +34,10 @@ let widthOfMargin = width * 0.05;
 type Props = {};
 
 export default class LoginLeaf extends Component<Props> {
+  static navigationOptions = {
+    title: '登录'
+  }
+
   // 静态变量&&静态函数
   static mystatic1 = '静态变量读取方法 类名.变量名'
 
@@ -43,6 +49,7 @@ export default class LoginLeaf extends Component<Props> {
       password: ''
     };
     this.updatePW = this.updatePW.bind(this);//
+    this.openDrawerNavigator = this.openDrawerNavigator.bind(this);
   }
   updateNum(newText) {
     this.setState((state) => { // setState 的第二个参数是回调函数，组件渲染完成后执行
@@ -86,21 +93,53 @@ export default class LoginLeaf extends Component<Props> {
       }
     )
   }
+  userPressModal() {
+    Alert.alert(
+      '弹出框标题',
+      `登录账号为：${this.state.phoneNum}`,
+      [
+        {
+          text: '确认',
+          onPress: (() => { this.showWaitingModalBeforeJump() })
+        },
+        {
+          text: '取消',
+          onPress: (() => { console.log('用户取消')}),
+          style: 'cancel'
+        }
+      ],
+      {
+        cancelable: false // 禁止用户的点击非alert弹窗区域让弹窗消失行为
+      }
+    )
+  }
+
   optionSelected() {
     console.log('弹出框确认')
   }
 
   jumpToWaiting() {
-    this.props.onLoginPressed(this.state.phoneNum,123);
+    // this.props.onLoginPressed(this.state.phoneNum,123);
+    this.props.navigation.navigate('Wait',{
+      phoneNumber: this.state.phoneNum,
+      userPW: this.state.password
+    })
+  }
+  showWaitingModalBeforeJump() {
+    this.props.screenProps.setWaitingModal(true, '');
+    this.aTimer = window.setTimeout( this.jumpToWaiting.bind(this), 3000);
   }
 
   componentDidMount(){ //组件插入后执行
     instructions();
   }
+  componentWillUnmount(){
+    console.log('组件卸载了，清楚定时器');
+  }
   render() {
 
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Text style={styles.welcome}>
           一逻辑像素等于{pixelRatio} 实际单位像素
         </Text>
@@ -135,15 +174,41 @@ export default class LoginLeaf extends Component<Props> {
         </Text>
         <Text
           style={styles.bigTextPrompt}
+          onPress={() => this.userPressModal()}
+        >
+          Modal 跳转事件
+        </Text>
+        <TouchableOpacity
+          style={{borderWidth:2, width: 100,height: 50, alignItems: 'center',justifyContent: 'center',marginLeft: 140}}
+          onPress={() => this.openDrawerNavigator()}
+        >
+          <View>
+              <Text>
+              DrawerOpen
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <Text
+          style={styles.bigTextPrompt}
           onPress={() => this.userPressAddressBook()}
         >
           通讯录
         </Text>
+        <View style={{height: 2000}}>
+          <Text>
+            {"        headerMode: 'screen'  只对android生效"}
+          </Text>
+        </View>
 
-      </View>
+
+      </ScrollView>
     );
+
   };
 
+  openDrawerNavigator() {
+    this.props.navigation.openDrawer();
+  }
   // 通讯录
   userPressAddressBook() {
     console.log("waiting to do something");
@@ -155,7 +220,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: 'center',
     // alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#F5FCFF'
   },
   welcome: {
     fontSize: 20,
