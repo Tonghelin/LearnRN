@@ -42,7 +42,9 @@ import {
 // import LearnRN from "./src/component/Navigator/DrawerNavigator"; // 第10章之 DrawerNavigator 抽屉导航
 // import LearnRN from "./src/component/Navigator/CustomDrawer"; // 第10章之 DrawerNavigator 定制化contentComponent
 // import LearnRN from "./src/component/Modal/ModalExample"; // 第10.8.1章之 自定义Modal组件
-import LearnRN from "./src/component/Modal/UseModal"; // 第10.8.2章之 使用自定义Modal组件
+// import LearnRN from "./src/component/Modal/UseModal"; // 第10.8.2章之 使用自定义Modal组件
+import LearnRN from "./src/component/section11/PanResponder"; // 第11章手势识别之  11.4.1 单点手势---点击、拖动选择百分比参数
+// import LearnRN from "./src/component/Modal/UseModal"; // 第11章手势识别之
 
 
 // 记录手机屏幕的宽高
