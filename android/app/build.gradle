@@ -107,6 +107,15 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+    signingConfigs { // 打包时这整个段落都要添加   下面buildTypes 中要不上最后一句
+        release {
+            storeFile file("./ruiyin.key")
+            storePassword "ruiyin"
+            keyAlias "zhyc"
+            keyPassword "ruiyin"
+        }
+    }
+
     splits {
         abi {
             reset()
@@ -119,6 +128,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release    // 这句别忘了
         }
     }
     // applicationVariants are e.g. debug, release

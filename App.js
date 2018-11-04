@@ -45,7 +45,17 @@ import {
 // import LearnRN from "./src/component/Modal/UseModal"; // 第10.8.2章之 使用自定义Modal组件
 // import LearnRN from "./src/component/section11/PanResponder"; // 第11章手势识别之  11.4.1 单点手势---点击、拖动选择百分比参数
 // import LearnRN from "./src/component/section13/WebView"; // 第13章  WebView组件之网页浏览器
-import LearnRN from "./src/component/section13/LocalWebView"; // 第13章  WebView组件之加载本地网页
+// import LearnRN from "./src/component/section13/LocalWebView"; // 第13章  WebView组件之加载本地网页
+// import LearnRN from "./src/component/section14/loacl"; // 第13章  WebView组件之加载本地网页
+// import LearnRN from "./src/component/section14/cameraRoll"; // 第14章  WebView组件之加载本地网页
+// import LearnRN from "./src/component/section14/photoSelection"; // 第14章  WebView组件之加载本地网页
+// import LearnRN from "./src/component/section15/datePickerAndroid"; // 第15章  DatePickerAndroid
+// import LearnRN from "./src/component/section15/timePickerAndroid"; // 第15章  TimePickerAndroid
+// import LearnRN from "./src/component/section15/picker"; // 第15章   Picker 下拉框选择器
+// import LearnRN from "./src/component/section15/appState"; // 第15章   AppState 应用当前状态判断
+// import LearnRN from "./src/component/section15/geolocation"; // 第15章   navigator.geolocation. 定位
+import LearnRN from "./src/component/section15/vibrate"; // 第15章   navigator.geolocation. 定位
+
 
 
 // 记录手机屏幕的宽高
@@ -53,7 +63,7 @@ const {height, width} = Dimensions.get('window');
 const pixelRatio = PixelRatio.get();
 const instructions = Platform.select({
   ios: () => console.log(`window.height= ${pixelRatio}`),
-  android:() => alert('this is android')
+  android:() => console.log('this is android')
 });
 let widthOfMargin = width * 0.05;
 
